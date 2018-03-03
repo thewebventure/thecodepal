@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+	<head>
+		<title>TheCodePal</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<script src='https://cdn.firebase.com/js/client/2.4.0/firebase.js'></script>
+		
+		<style>
+			body {
+				text-align: center;
+			}
+			#iport {
+				margin-bottom: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="iport">
+			<form action="javascript:send()">
+				<span>TheCodePal</span><br>
+				<input id="userinput" placeholder="Enter Request">
+				<input type="submit">
+			</form>
+		</div>
+		
+		<div id="oport">
+			
+		</div>
+		
+		<form id="tport" action="javascript:addTrainData()">
+			<span>Train the AI</span><br>
+			<input placeholder="Human Word Here" id="humanWord"><br>
+			<input placeholder="Human Word Type Here" id="humanWordType"><br>
+			<input type="submit">
+			<div style="margin-top: 30px">
+				<span>Human Word Type Docs</span><br>
+				<strong>type (example):</strong><span> meaning (example)</span>
+			</div>
+		</form>
+		
+		<!--AI scripts below-->
+		<script>
+			var AIserver = new Firebase('https://routifi-4dd03.firebaseio.com');
+			var AI = {
+				respond : function(io) {
+					var ioSampleOne = io.split(" ");
+					for( i = 0; i < ioSampleOne; i++ ) {
+						
+					}
+				},
+				bootUp : function() {
+					AIserver.on('child_added', function(snapshot) {
+						var msg = snapshot.val();
+						
+					});
+				}
+			};
+		</script>
+		
+		<!--ui scripts below-->
+		<script>
+			var userinput = document.getElementById("userinput");
+			AI.bootUp();
+			function send() {
+				var useri = userinput.value;
+				
+			}
+		</script>
+		
+	</body>
+</html>
