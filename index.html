@@ -36,6 +36,7 @@
 				-webkit-transition: 0.3s;
 				border: 0px solid #dfdfdf;
 				padding: 8px;
+				border: 1px solid #c6c6c6;
 				border-radius: 6px;
 				font-size: 20px;
 				font-weight: lighter;
@@ -51,6 +52,31 @@
 			.inputEl:focus {
 				box-shadow: 1px 1px 0px #c6c6c6,2px 2px 0px #c6c6c6, 3px 3px 0px #d3d3d3, 4px 4px 0px #d3d3d3, 5px 5px 0px #d9d9d9, 6px 6px 0px #d9d9d9, 7px 7px 0px #dddddd, 7px 7px 0px #dddddd, 8px 8px 0px #e5e5e5, 9px 9px 0px #e5e5e5;
 			}
+			input[type="submit"] {
+				border-radius: 2px;
+				background: #f2f2f2;
+				border: 1px solid #f2f2f2;
+				color: #757575;
+				cursor: default;
+				font-size: 14px;
+				font-weight: bold;
+				outline: none;
+				width: 100px;
+				padding: 0 16px;
+				height:36px;
+				box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+				background: #f8f8f8;
+				border: 1px solid #c6c6c6;
+				box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+				color: #222;
+				border-radius: 5px;
+				transition: 0.3s;
+				-webkit-transition: 0.3s;
+				margin-top: 20px;
+			}
+			input[type="submit"]:hover {
+				box-shadow: 1px 1px 0px #c6c6c6, 2px 2px 0px #d3d3d3, 4px 4px 0px #d9d9d9, 5px 5px 0px #dddddd, 7px 7px 0px #e5e5e5;
+			}
 		</style>
 	</head>
 	<body>
@@ -60,6 +86,7 @@
 				<span class="logo"><strong>The</strong>CodePal</span><br>
 				<input class="inputEl" id="userinput" placeholder="Enter Request"><br>
 				<input type="submit">
+				<input type="submit" value="Settings">
 			</form>
 		</div>
 		
@@ -67,7 +94,7 @@
 			
 		</div>
 		
-		<form id="tport" action="javascript:addTrainData()">
+		<form id="tport" action="javascript:addTrainData()" style="display: none">
 			<span>Train the AI</span><br>
 			<input placeholder="Human Word Here" id="humanWord"><br>
 			<input placeholder="Human Word Type Here" id="humanWordType"><br>
