@@ -52,7 +52,7 @@
 			.inputEl:focus {
 				box-shadow: 1px 1px 0px #c6c6c6,2px 2px 0px #c6c6c6, 3px 3px 0px #d3d3d3, 4px 4px 0px #d3d3d3, 5px 5px 0px #d9d9d9, 6px 6px 0px #d9d9d9, 7px 7px 0px #dddddd, 7px 7px 0px #dddddd, 8px 8px 0px #e5e5e5, 9px 9px 0px #e5e5e5;
 			}
-			input[type="submit"] {
+			input[type="submit"], .btn {
 				border-radius: 2px;
 				background: #f2f2f2;
 				border: 1px solid #f2f2f2;
@@ -74,7 +74,7 @@
 				-webkit-transition: 0.3s;
 				margin-top: 20px;
 			}
-			input[type="submit"]:hover {
+			input[type="submit"]:hover, .btn:hover {
 				box-shadow: 1px 1px 0px #c6c6c6, 2px 2px 0px #d3d3d3, 4px 4px 0px #d9d9d9, 5px 5px 0px #dddddd, 7px 7px 0px #e5e5e5;
 			}
 		</style>
@@ -86,7 +86,7 @@
 				<span class="logo"><strong>The</strong>CodePal</span><br>
 				<input class="inputEl" id="userinput" placeholder="Enter Request"><br>
 				<input type="submit">
-				<input type="submit" value="Settings">
+				<button class="btn" onclick="opnSettings()">Settings</button>
 			</form>
 		</div>
 		
@@ -98,7 +98,6 @@
 			<span>Train the AI</span><br>
 			<input placeholder="Human Word Here" id="humanWord"><br>
 			<input placeholder="Human Word Type Here" id="humanWordType"><br>
-			<input type="submit">
 		</form>
 		
 		<!--AI scripts below-->
@@ -122,6 +121,17 @@
 		
 		<!--ui scripts below-->
 		<script>
+			var setMode = 0;
+			function opnSettings() {
+				if( setMode == 0 ) {
+					document.getElementById("tport").style.display = "block";
+					setMode = 1;
+				} else {
+					document.getElementById("tport").style.display = "none";
+					setMode = 0;
+				}
+			}
+			
 			var userinput = document.getElementById("userinput");
 			AI.bootUp();
 			function send() {
