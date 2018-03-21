@@ -58,6 +58,11 @@
 				-moz-appearance: none;
 				box-shadow: 1px 1px 0px #c6c6c6,2px 2px 0px #c6c6c6, 3px 3px 0px #d3d3d3, 4px 4px 0px #d3d3d3, 5px 5px 0px #d9d9d9, 6px 6px 0px #d9d9d9, 7px 7px 0px #dddddd, 7px 7px 0px #dddddd, 8px 8px 0px #e5e5e5, 9px 9px 0px #e5e5e5;
 			}
+			input {
+				margin-top: 2px;
+				margin-bottom: 2px;
+				width: 500px;
+			}
 			input[type="submit"], .btn {
 				-webkit-appearance: none;
 				-moz-appearance: none;
@@ -87,6 +92,9 @@
 				-moz-appearance: none;
 				box-shadow: 1px 1px 0px #c6c6c6, 2px 2px 0px #d3d3d3, 4px 4px 0px #d9d9d9, 5px 5px 0px #dddddd, 7px 7px 0px #e5e5e5;
 			}
+			input[type="submit"]:disabled, .btn:disabled {
+				opacity: 0.5;
+			}
 		</style>
 	</head>
 	<body>
@@ -94,9 +102,10 @@
 		<div id="iport">
 			<form action="javascript:send()">
 				<span class="logo"><strong>The</strong>CodePal</span><br>
+				<span>An AI that codes for you and your buisness</span><br>
 				<input class="inputEl" id="userinput" placeholder="Enter Request"><br>
 				<input type="submit">
-				<button class="btn" onclick="opnSettings()">Settings</button>
+				<button class="btn" onclick="opnTrain()">Train</button>
 			</form>
 		</div>
 		
@@ -106,33 +115,48 @@
 		
 		<form id="tport" action="javascript:addTrainData()" style="display: none">
 			<span>Train the AI</span><br>
-			<input placeholder="Human Word Here" id="humanWord"><br>
-			<input placeholder="Human Word Type Here" id="humanWordType"><br>
+			<input placeholder="train word here" id="humanWord" onkeyup="checkTvalid()"><br>
+			<input placeholder="category here" id="humanWordType" onkeyup="checkTvalid()"><br>
+			<input placeholder="related words, with category (example: red^adjectives )" id="catTypeInput" onkeyup="checkTvalid()"><br>
+			<input type="checkbox" id="triggerConfirm" style="width: 40px;"><span>Special Trigger?</span><br>
+			<select id="triggerType" style="display:none">
+				<option value="strtCode">Start Coding</option>
+			</select><br>
+			<input id="tsubmiter" type="submit" value="send data" disabled>
 		</form>
 		
 		<!--AI scripts below-->
 		<script>
 			var AIserver = new Firebase('https://routifi-4dd03.firebaseio.com');
-			var AI = {
-				respond : function(io) {
-					var ioSampleOne = io.split(" ");
-					for( i = 0; i < ioSampleOne; i++ ) {
+			var inputElement = document.getElementById("userinput");
+			var categories  = ["greetings", "action", "code", "noun", "adjectives"];
+			var greetings = [];
+			var action = [];
+			var code = [];
+			var noun = [];
+			function send() {
+				var inputpri = inputElement.value.toLowerCase();
+				var inputspl = inputpri.split(" ");
+				for( i=0; i<categories.length;i++) {
 						
-					}
-				},
-				bootUp : function() {
-					AIserver.on('child_added', function(snapshot) {
-						var msg = snapshot.val();
-						
-					});
 				}
-			};
+			}
 		</script>
 		
 		<!--ui scripts below-->
 		<script>
 			var setMode = 0;
-			function opnSettings() {
+			function checkTvalid() {
+				var hwval = document.getElementById("humanWord").value;
+				var hwtval = document.getElementById("humanWordType").value;
+				var ctival = document.getElementById("catTypeInput").value;
+				if(hwval.length!=0&&hwtval!=0&&ctival!=0) {
+					document.getElementById("tsubmiter").disabled = false;
+				} else {
+					document.getElementById("tsubmiter").disabled = true;
+				}
+			}
+			function opnTrain() {
 				if( setMode == 0 ) {
 					document.getElementById("tport").style.display = "block";
 					setMode = 1;
@@ -141,12 +165,12 @@
 					setMode = 0;
 				}
 			}
-			
-			var userinput = document.getElementById("userinput");
-			AI.bootUp();
-			function send() {
-				var useri = userinput.value;
-				
+			document.getElementById("triggerConfirm").onclick = function () {
+				if(document.getElementById("triggerConfirm").checked == true ) {
+					document.getElementById("triggerType").style.display = "inline-block";	
+				} else {
+					document.getElementById("triggerType").style.display = "none";
+				}
 			}
 		</script>
 		
