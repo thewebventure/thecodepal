@@ -141,6 +141,19 @@
 						
 				}
 			}
+			
+			function addTrainData() {
+				var hwvar = document.getElementById("humanWord").value;
+				var hwtvar = document.getElementById("humanWordType").value;
+				var ctivar = document.getElementById("catTypeInput").value;
+				var ttvar = document.getElementById("triggerType").value;
+				var tcsta = document.getElementById("triggerConfirm").checked;
+				if(tcsta == true) {
+					AIserver.push({hwvar:hwvar, hwtvar:hwtvar, ctivar:ctivar, ttvar:ttvar});
+				} else {
+					AIserver.push({hwvar:hwvar, hwtvar:hwtvar, ctivar:ctivar});
+				}
+			}
 		</script>
 		
 		<!--ui scripts below-->
